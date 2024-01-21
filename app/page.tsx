@@ -5,6 +5,8 @@ import { client, urlFor } from "@/app/lib/sanity"
 import Image from 'next/image'
 import Link from "next/link";
 
+export const revalidate = 30
+
 async function getData() {
   const query = ` 
   *[_type=='blog'] {
