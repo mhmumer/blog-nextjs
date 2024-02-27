@@ -1,10 +1,10 @@
-
 import Scroll from "@/app/components/scroll";
+import { ArrowUpCircle } from "lucide-react";
 import { fullBlog } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-
+import Link from "next/link";
 
 export const revalidate = 30;
 
@@ -29,10 +29,16 @@ export default async function BlogArticle({
   params: { slug: string };
 }) {
   const data: fullBlog = await getData(params.slug);
-  
+
   return (
     <section>
       <Scroll />
+      <Link
+        className="scroll-smooth fixed bottom-4 right-4 bg-[#1a1a64] w-[3rem] h-[3rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-black border-opacity-40 shadow-2xl rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all"
+        href={""}
+      >
+        <ArrowUpCircle />
+      </Link>
       <div className="mt-8">
         <h1>
           <span className="block text-base text-center text-primary font-semibold tracking-wide uppercase">
