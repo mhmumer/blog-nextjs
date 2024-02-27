@@ -7,6 +7,7 @@ export interface simpleBlogCard {
 export interface fullBlog {
    currentSlug: string,
    title: string,
+   smallDescription: string,
    content1: any,
    content2: any,
    titleImage: any,

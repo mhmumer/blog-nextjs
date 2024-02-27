@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Scroll from "@/app/components/scroll";
 import { ArrowUpCircle } from "lucide-react";
 import { fullBlog } from "@/app/lib/interface";
@@ -5,6 +6,7 @@ import { client, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
+import { title } from "process";
 
 export const revalidate = 30;
 
@@ -13,6 +15,7 @@ async function getData(slug: string) {
    *[_type == "blog" && slug.current == '${slug}']{
       "currentSlug": slug.current,
       title,
+      smallDescription,
       content1,
       content2,
       titleImage,
@@ -21,6 +24,18 @@ async function getData(slug: string) {
    `;
   const data = await client.fetch(query);
   return data;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const blog: fullBlog = await getData(params.slug);
+  return {
+    title: blog.title,
+    description: blog.smallDescription,
+  };
 }
 
 export default async function BlogArticle({
@@ -34,10 +49,10 @@ export default async function BlogArticle({
     <section>
       <Scroll />
       <Link
-        className="scroll-smooth fixed bottom-4 right-4 bg-[#1a1a64] w-[3rem] h-[3rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-black border-opacity-40 shadow-2xl rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all"
+        className="scroll-smooth fixed bottom-4 right-4 bg-[#06061c] w-[3.5rem] h-[3.5rem] text-white backdrop-blur-[0.5rem] dark:bg-white dark:text-gray-950 text-bold border border-black border-opacity-40 shadow-2xl rounded-full flex items-center opacity-85  justify-center hover:scale-[1.15] active:scale-105 transition-all"
         href={""}
       >
-        <ArrowUpCircle />
+        <ArrowUpCircle className="h-[1.8rem] w-[1.8rem]" />
       </Link>
       <div className="mt-8">
         <h1>

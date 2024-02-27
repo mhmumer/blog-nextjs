@@ -4,6 +4,12 @@ import { simpleBlogCard } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity"
 import Image from 'next/image'
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Muhammad UMer | Blog",
+  description: "Blog website made using NextJs",
+};
 
 export const revalidate = 30
 
