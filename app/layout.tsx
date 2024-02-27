@@ -26,7 +26,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-          <Navbar/>
+          <Navbar />
+          <hr
+  className=" max-w-3xl items-center mx-auto px-4 mb-8 w-full relative h-0.5 border-t-0 bg-black/35 opacity-50 dark:bg-gray-400" />
           <main className='mx-auto px-4 max-w-3xl'>{children}</main>
           <Footer/>
       </ThemeProvider>
